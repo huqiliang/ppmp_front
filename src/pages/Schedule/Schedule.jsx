@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
 import { Table, Icon, Pagination, Balloon } from '@alifd/next';
 import Ellipsis from '@icedesign/ellipsis';
-import styles from './Schedule.module.scss'
+import DataBinder from '@icedesign/data-binder';
+import moment from 'moment';
+import styles from './Schedule.module.scss';
 import './Schedule.scss';
-
-
-const getData = () => {
-  return Array.from({ length: 10 }).map((item, index) => {
-    return {
-      id: index + 1,
-      name: { zh: '生活大爆炸', en: 'The Big Bang Theory' },
-      origin: {
-        director: '马克·森卓斯基',
-        actor: '吉姆·帕森斯',
-        company: '哥伦比亚广播公司',
-      },
-      type: '喜剧 / 爱情',
-      dayReturns: {
-        returns: '888.8万',
-        ratio: '10%',
-      },
-      accReturns: '9.99亿',
-      date: '2017-09-25',
-      score: '9.5',
-    };
-  });
-};
-
+@DataBinder({
+  products: {
+    url: '/ppmp/products',
+    type: 'get',
+    // data: {
+    //   uid: '123123',
+    // },
+    // defaultBindingData: {
+    //   // 配置接口返回数据的字段的初次默认值
+    //   userName: '',
+    //   userAge: 0,
+    // },
+  },
+})
 export default class Schedule extends Component {
   static displayName = 'Schedule';
 
@@ -38,38 +30,15 @@ export default class Schedule extends Component {
     super(props);
     this.state = {
       current: 1,
-      isLoading: false,
-      dataSource: [],
+      // isLoading: false,
+      // dataSource: [],
     };
   }
 
   componentDidMount() {
-    this.fetchData();
+    // this.fetchData();
+    this.props.updateBindingData('products');
   }
-
-  mockApi = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(getData());
-      }, 600);
-    });
-  };
-
-  fetchData = () => {
-    this.setState(
-      {
-        isLoading: true,
-      },
-      () => {
-        this.mockApi().then((data) => {
-          this.setState({
-            dataSource: data,
-            isLoading: false,
-          });
-        });
-      }
-    );
-  };
 
   /**
    * 页码发生改变时的回调函数
@@ -84,7 +53,9 @@ export default class Schedule extends Component {
       }
     );
   };
-
+  renderCreateAt = (value) => {
+    return moment(value).format('YYYY-MM-DD hh:mm:ss');
+  };
   renderId = (value, index) => {
     const ranking = {
       1: { color: 'red' },
@@ -113,7 +84,11 @@ export default class Schedule extends Component {
       <div className={styles.dayReturns}>
         <div className={styles.returns}>{value.returns}</div>
         <div className={styles.ratio}>
-          <Icon type="arrow-up-filling" size="xs" className={styles.arrowUpIcon} />
+          <Icon
+            type="arrow-up-filling"
+            size="xs"
+            className={styles.arrowUpIcon}
+          />
           上涨
           {value.ratio}
         </div>
@@ -169,34 +144,39 @@ export default class Schedule extends Component {
   };
 
   render() {
-    const { dataSource, isLoading } = this.state;
-
+    // const { dataSource, isLoading } = this.state;
+    const { products } = this.props.bindingData;
+    console.log('====================================');
+    console.log(products);
+    console.log('====================================');
     return (
       <div className={styles.container}>
         <div className={styles.head}>
-          <h3 className={styles.title}>2018年10月01日票房</h3>
-          <p className={styles.desc}>更新时间：2018年10月01日 12：00</p>
+          <h3 className={styles.title}>项目列表:</h3>
+          {/* <p className={styles.desc}>更新时间：2018年10月01日 12：00</p> */}
         </div>
-        <div className={styles.summary}>全国单日总票房：100 亿</div>
+        {/* <div className={styles.summary}>全国单日总票房：100 亿</div> */}
         <Table
-          dataSource={dataSource}
-          loading={isLoading}
+          dataSource={products.rows}
+          // loading={isLoading}
           className="custom-table"
           style={{ minHeight: '400px' }}
         >
+          <Table.Column align="center" title="项目Id" dataIndex="id" />
+          <Table.Column align="center" title="项目名称" dataIndex="title" />
+          <Table.Column
+            align="left"
+            title="项目简介"
+            dataIndex="sub_description"
+          />
+          <Table.Column align="center" title="Owner" dataIndex="owner" />
           <Table.Column
             align="center"
-            title="排名"
-            dataIndex="id"
-            cell={this.renderId}
+            title="开始时间"
+            cell={this.renderCreateAt}
+            dataIndex="created_at"
           />
-          <Table.Column
-            align="center"
-            title="影片名称"
-            dataIndex="name"
-            cell={this.renderName}
-          />
-          <Table.Column
+          {/* <Table.Column
             align="center"
             title="影片出品"
             dataIndex="origin"
@@ -220,7 +200,7 @@ export default class Schedule extends Component {
             title="评分"
             dataIndex="score"
             cell={this.renderScore}
-          />
+          /> */}
         </Table>
         <Pagination
           className={styles.pagination}
@@ -231,4 +211,3 @@ export default class Schedule extends Component {
     );
   }
 }
-

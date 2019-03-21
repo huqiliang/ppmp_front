@@ -25,21 +25,21 @@ const headerMenuConfig = [
 ];
 
 const asideMenuConfig = [
+  // {
+  //   name: '客流分析',
+  //   path: '/analysis',
+  //   icon: 'home2',
+  // },
   {
-    name: '客流分析',
-    path: '/analysis',
-    icon: 'home2',
-  },
-  {
-    name: '影片排期',
+    name: '项目列表',
     path: '/schedule',
     icon: 'copy',
   },
-  {
-    name: '卖品转化',
-    path: '/conversion',
-    icon: 'cascades',
-  },
+  // {
+  //   name: '卖品转化',
+  //   path: '/conversion',
+  //   icon: 'cascades',
+  // },
 ];
 
 export { headerMenuConfig, asideMenuConfig };
