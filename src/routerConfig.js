@@ -10,6 +10,8 @@ import Analysis from './pages/Analysis';
 import Schedule from './pages/Schedule';
 
 import ServerList from './pages/ServerList';
+
+import ProjectList from './pages/ProjectList';
 import Conversion from './pages/Conversion';
 
 const routerConfig = [
@@ -36,6 +38,10 @@ const routerConfig = [
   {
     path: '/serverList',
     component: ServerList,
+  },
+  {
+    path: '/projectList',
+    component: ProjectList,
   },
 ];
 

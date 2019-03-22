@@ -12,26 +12,26 @@ export default class TableFilter extends Component {
   render() {
     return (
       <div style={styles.tableFilter}>
-        <div style={styles.title}>服务器管理</div>
+        <div style={styles.title}>项目管理</div>
         <div style={styles.filter}>
           <div style={styles.filterItem}>
             <span style={styles.filterLabel}>名称：</span>
             <Input />
           </div>
           <div style={styles.filterItem}>
-            <span style={styles.filterLabel}>类型：</span>
+            <span style={styles.filterLabel}>角色：</span>
             <Select style={{ width: '200px' }}>
               <Select.Option value="all">全部</Select.Option>
-              <Select.Option value="dev">测试服</Select.Option>
-              <Select.Option value="prod">生产服</Select.Option>
+              <Select.Option value="admin">管理员</Select.Option>
+              <Select.Option value="dbo">运营</Select.Option>
             </Select>
           </div>
           <div style={styles.filterItem}>
             <span style={styles.filterLabel}>状态：</span>
             <Select style={{ width: '200px' }}>
               <Select.Option value="all">全部</Select.Option>
-              <Select.Option value="use">启用</Select.Option>
-              <Select.Option value="unUse">停用</Select.Option>
+              <Select.Option value="checked">已审核</Select.Option>
+              <Select.Option value="unCheck">未审核</Select.Option>
             </Select>
           </div>
           <Button type="primary" style={styles.submitButton}>

@@ -16,19 +16,24 @@ const asideMenuConfig = [
     path: '/analysis',
     icon: 'home2',
   },
+  // {
+  //   name: '项目列表',
+  //   path: '/schedule',
+  //   icon: 'copy',
+  // },
+  // {
+  //   name: '服务器配置',
+  //   path: '/conversion',
+  //   icon: 'cascades',
+  // },
   {
-    name: '项目列表',
-    path: '/schedule',
-    icon: 'copy',
-  },
-  {
-    name: '服务器配置',
-    path: '/conversion',
+    name: '服务器列表',
+    path: '/serverList',
     icon: 'cascades',
   },
   {
-    name: '\u670D\u52A1\u5668\u5217\u8868',
-    path: '/serverList',
+    name: '项目列表',
+    path: '/projectList',
     icon: 'home',
   },
 ];
