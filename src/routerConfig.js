@@ -8,6 +8,8 @@ import UserLogin from './pages/UserLogin';
 import UserRegister from './pages/UserRegister';
 import Analysis from './pages/Analysis';
 import Schedule from './pages/Schedule';
+
+import ServerList from './pages/ServerList';
 import Conversion from './pages/Conversion';
 
 const routerConfig = [
@@ -30,6 +32,10 @@ const routerConfig = [
   {
     path: '/conversion',
     component: Conversion,
+  },
+  {
+    path: '/serverList',
+    component: ServerList,
   },
 ];
 

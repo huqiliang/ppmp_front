@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Dialog, Grid, Input, Button, DatePicker } from '@alifd/next';
+import {
+  Dialog,
+  Grid,
+  Input,
+  Button,
+  DatePicker,
+  NumberPicker,
+} from '@alifd/next';
 import IceContainer from '@icedesign/container';
 import {
   FormBinderWrapper as IceFormBinderWrapper,
@@ -93,7 +100,7 @@ export default class SimpleFormDialog extends Component {
           autoFocus={false}
           footerAlign="center"
           title={isEdit ? '编辑项目' : '新增项目'}
-          {...this.props}
+          // {...this.props}
           onOk={this.onOk}
           onCancel={this.hideDialog}
           onClose={this.hideDialog}
@@ -150,21 +157,39 @@ export default class SimpleFormDialog extends Component {
               </Row>
               <Row style={styles.formRow}>
                 <Col span={`${isMobile ? '6' : '3'}`}>
-                  <label style={styles.formLabel}>开始时间：</label>
+                  <label style={styles.formLabel}>进度</label>
                 </Col>
                 <Col span={`${isMobile ? '18' : '16'}`}>
                   <IceFormBinder
-                    name="time"
+                    name="process"
                     required
-                    min={2}
-                    max={10}
-                    message="当前字段必填，且最少 2 个字最多 10 个字"
+                    message="请输入0-100的数字"
                   >
-                    <DatePicker defaultValue={moment()} />
+                    <NumberPicker
+                      min={0}
+                      max={100}
+                      style={styles.input}
+                      placeholder="请输入进度"
+                    />
+                  </IceFormBinder>
+                  <IceFormError name="sub_description" />
+                </Col>
+              </Row>
+              <Row style={styles.formRow}>
+                <Col span={`${isMobile ? '6' : '3'}`}>
+                  <label style={styles.formLabel}>开始时间：</label>
+                </Col>
+                <Col span={`${isMobile ? '18' : '16'}`}>
+                  <IceFormBinder name="time" required message="当前字段必填">
+                    <DatePicker
+                      format="YYYY-MM-DD hh:mm:ss"
+                      defaultValue={moment()}
+                    />
                   </IceFormBinder>
                   <IceFormError name="time" />
                 </Col>
               </Row>
+
               {/* <Row style={styles.formRow}>
                 <Col>
                   <IceFormBinder name="type">

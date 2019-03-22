@@ -8,38 +8,29 @@ const headerMenuConfig = [
     path: '/',
     icon: 'home',
   },
-  {
-    name: '反馈',
-    path: 'https://github.com/alibaba/ice',
-    external: true,
-    newWindow: true,
-    icon: 'message',
-  },
-  {
-    name: '帮助',
-    path: 'https://alibaba.github.io/ice',
-    external: true,
-    newWindow: true,
-    icon: 'bangzhu',
-  },
 ];
 
 const asideMenuConfig = [
-  // {
-  //   name: '客流分析',
-  //   path: '/analysis',
-  //   icon: 'home2',
-  // },
+  {
+    name: '统计分析',
+    path: '/analysis',
+    icon: 'home2',
+  },
   {
     name: '项目列表',
     path: '/schedule',
     icon: 'copy',
   },
-  // {
-  //   name: '卖品转化',
-  //   path: '/conversion',
-  //   icon: 'cascades',
-  // },
+  {
+    name: '服务器配置',
+    path: '/conversion',
+    icon: 'cascades',
+  },
+  {
+    name: '\u670D\u52A1\u5668\u5217\u8868',
+    path: '/serverList',
+    icon: 'home',
+  },
 ];
 
 export { headerMenuConfig, asideMenuConfig };

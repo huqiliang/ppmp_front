@@ -75,7 +75,7 @@ export default class Schedule extends Component {
   render() {
     // const { dataSource, isLoading } = this.state;
     const { products } = this.props.bindingData;
-    return (
+    return products ? (
       <div className={styles.container}>
         <div className={styles.head}>
           <h3 className={styles.title}>搜索列表:</h3>
@@ -123,6 +123,6 @@ export default class Schedule extends Component {
           onChange={this.handleChange}
         />
       </div>
-    );
+    ) : null;
   }
 }
